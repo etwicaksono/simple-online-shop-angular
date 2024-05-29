@@ -7,13 +7,13 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": true
+          "standalone": false
         },
         "@schematics/angular:directive": {
-          "standalone": true
+          "standalone": false
         },
         "@schematics/angular:pipe": {
-          "standalone": true
+          "standalone": false
         }
       },
       "root": "",
