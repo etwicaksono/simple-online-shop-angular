@@ -1,0 +1,27 @@
+
+.header {
+  background-color: #f49881;
+  justify-content: space-between;
+  font-family: Mulish, sans-serif;
+  font-weight: bold;
+  color: #fff;
+
+  .header-spacer {
+    flex: 1 1 auto;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    margin: 7px 0 7px 3rem;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    img{
+      width:3rem;
+      height:3rem;
+    }
+  }
+}
+
