@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatPaginator
   ],
   providers: [
+    Title,
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
