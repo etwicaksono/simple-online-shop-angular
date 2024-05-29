@@ -10,12 +10,12 @@ import { HeaderComponent } from './core/components/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderComponent
+    HeaderComponent,
+    CustomerListComponent,
   ],
   providers: [
     provideAnimationsAsync()
