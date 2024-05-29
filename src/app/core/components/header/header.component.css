@@ -6,10 +6,6 @@
   font-weight: bold;
   color: #fff;
 
-  .header-spacer {
-    flex: 1 1 auto;
-  }
-
   .logo {
     display: flex;
     justify-content: space-between;
@@ -21,6 +17,80 @@
     img{
       width:3rem;
       height:3rem;
+    }
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+  }
+
+  .nav button {
+    font-family: Mulish, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .nav button.router-link-active {
+    text-shadow: -1px -1px 0 rgb(20, 196, 240), 1px -1px 0 rgb(20, 196, 240), -1px 1px 0 rgb(20, 196, 240), 1px 1px 0 rgb(20, 196, 240);
+  }
+
+  .menu {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .header {
+      padding: 0 4%;
+    }
+
+    .nav {
+      display: none;
+    }
+    .menu {
+      display: block;
+      margin-right: -10px;
+    }
+
+    .mNav {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: 10px;
+    }
+
+    .mNav button {
+      font-family: Mulish, sans-serif;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .mNav button.router-link-active {
+      text-shadow: -1px -1px 0 rgb(20, 196, 240), 1px -1px 0 rgb(20, 196, 240), -1px 1px 0 rgb(20, 196, 240), 1px 1px 0 rgb(20, 196, 240);
+    }
+
+    .mNav .closeButton {
+      align-self: flex-end;
+      margin: -18px 0 0 5px;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 0 0;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+
+      img {
+        width: 40px;
+      }
+
+      h1 {
+        font-size: 1rem;
+      }
     }
   }
 }

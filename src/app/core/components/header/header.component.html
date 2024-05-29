@@ -3,5 +3,39 @@
     <img src="assets/online-shop-logo.png" alt="Logo">
     <h1>BTPN Online Shop</h1>
   </div>
-  <span class="header-spacer"></span>
+  <div class="nav">
+    <button mat-button routerLinkActive="router-link-active" routerLink="/customer-list">Customer</button>
+    <button mat-button routerLinkActive="router-link-active" routerLink="/item-list">Item</button>
+    <button mat-button routerLinkActive="router-link-active" routerLink="/order-list">Order</button>
+  </div>
+  <div class="menu">
+    <button mat-button (click)="sidebarVisible = true" [ngStyle]="{color: 'white'}">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <p-sidebar [(visible)]="sidebarVisible" position="right" [showCloseIcon]="false" [blockScroll]="true"
+      [style]="{ backgroundColor: '#f49881' }">
+      <div class="mNav">
+
+        <div class="closeButton">
+          <button mat-icon-button (click)="sidebarVisible = false">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div class="mNavButton">
+          <mat-icon>group</mat-icon>
+          <button mat-button routerLinkActive="router-link-active" routerLink="/customer-list">Customer</button>
+        </div>
+        <div class="mNavButton">
+          <mat-icon>category</mat-icon>
+          <button mat-button routerLinkActive="router-link-active" routerLink="/item-list">Item</button>
+        </div>
+        <div class="mNavButton">
+          <mat-icon>shopping_cart</mat-icon>
+          <button mat-button routerLinkActive="router-link-active" routerLink="/order-list">Order</button>
+        </div>
+      </div>
+    </p-sidebar>
+  </div>
 </mat-toolbar>
