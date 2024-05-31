@@ -14,28 +14,29 @@
       <table class="mt-3" *ngIf="dataSource && dataSource.data.length > 0" mat-table [dataSource]="dataSource" matSort
         (matSortChange)="announceSortChange($event)">
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="code">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription> Code </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          <td mat-cell *matCellDef="let customer"> {{customer.code}} </td>
         </ng-container>
 
-        <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <td mat-cell *matCellDef="let customer"> {{customer.name}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
+        <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription> Address </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          <td mat-cell *matCellDef="let customer"> {{customer.address}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
+        <ng-container matColumnDef="phone">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription> Phone </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <td mat-cell *matCellDef="let customer"> {{customer.phone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="isActive">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription> Active </th>
+          <td mat-cell *matCellDef="let customer"> {{customer.isActive}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

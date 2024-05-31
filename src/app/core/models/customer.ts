@@ -1,10 +1,10 @@
 export class Customer {
-  customerId!: number
-  customerName?: string
-  customerAddress?: string
-  customerCode!: string
-  customerPhone?: string
-  isActive!: boolean
-  lastOrderDate?: Date
+  customerID?: string
+  name?: string
+  address?: string
+  code?: string
+  phone?: string
+  isActive?: boolean
+  lastOrderDate?: string
   pic?: string
 }

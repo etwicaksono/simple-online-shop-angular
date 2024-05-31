@@ -27,9 +27,9 @@
       "@app/*": [
         "src/app/*"
       ],
-      "@environment/*": [
-        "src/environment/*"
-      ]
+      // "@environment/*": [
+      //   "src/environment/*"
+      // ]
     }
   },
   "angularCompilerOptions": {
