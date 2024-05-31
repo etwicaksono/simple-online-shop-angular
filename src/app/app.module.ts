@@ -15,12 +15,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { SidebarModule } from 'primeng/sidebar';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomerDialogComponent } from './core/components/customer-dialog/customer-dialog.component';
+import { ConfirmationService } from 'primeng/api';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerListComponent,
     HeaderComponent,
+    CustomerDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,11 +40,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatIconModule,
     SidebarModule,
-    MatPaginator
+    MatPaginator,
+    MatDialogModule,
   ],
   providers: [
     Title,
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    [ConfirmationService],
   ],
   bootstrap: [AppComponent]
 })

@@ -5,8 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { CustomerService } from '@app/core/services/customer.service';
 import { Customer } from '@app/core/models/customer';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
+import { CustomerDialogComponent } from '@app/core/components/customer-dialog/customer-dialog.component';
 
 @Component({
   selector: 'app-customer-list',
@@ -89,16 +90,28 @@ export class CustomerListComponent implements AfterViewInit {
   }
 
   deleteCustomer(customer: Customer): void {
+    // Implement delete functionality
+    console.log('Delete customer', customer);
+    this.customerService.deleteCustomer(customer.customerID)
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to remove this recipe from favorites?',
+      message: `Apakah Anda yakin ingin menghapus resep ini dari favorit?`,
+      header: 'Konfirmasi',
+      icon: 'pi pi-exclamation-triangle',
       accept: () => {
         if (customer === undefined || customer === null) return;
         this.customerService.deleteCustomer(customer.customerID).subscribe(response => {
-          const dialogRef = this.dialog.open(FavoriteDialogComponent, {
+          const dialogRef = this.dialog.open(CustomerDialogComponent, {
             panelClass: 'custom-fav-dialog',
           })
         })
-      }
+      },
+      reject: (type: ConfirmEventType) => {
+        if (type === ConfirmEventType.REJECT) {
+          console.log('Customer deletion rejected');
+        } else if (type === ConfirmEventType.CANCEL) {
+          console.log('Customer deletion cancelled');
+        }
+      },
     });
   }
 }

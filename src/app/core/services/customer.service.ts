@@ -38,6 +38,8 @@ export class CustomerService {
   }
 
   deleteCustomer(customerId: number): Observable<any> {
-    return this.httpClient.delete(`${environment.apiUrl}/customer/delete/${customerId}`);
+    let result = this.httpClient.delete(`${environment.apiUrl}/customer/delete/${customerId}`)
+    console.log('result', result); // #marked: for debugging
+    return result
   }
 }
