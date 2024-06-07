@@ -12,12 +12,14 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerDialogComponent } from './core/components/customer-dialog/customer-dialog.component';
 import { ConfirmationService } from 'primeng/api';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     CommonModule,
     HttpClientModule,
+    ButtonModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -42,6 +45,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     SidebarModule,
     MatPaginator,
     MatDialogModule,
+    ConfirmDialogModule,
   ],
   providers: [
     Title,

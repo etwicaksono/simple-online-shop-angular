@@ -8,6 +8,7 @@ import { Customer } from '@app/core/models/customer';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerDialogComponent } from '@app/core/components/customer-dialog/customer-dialog.component';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-customer-list',
@@ -26,6 +27,7 @@ export class CustomerListComponent implements AfterViewInit {
   customerCode?: string = ""
   customerPhone?: string = ""
   isActive?: boolean | null = null // #marked: onlydev
+  printReportUrl = environment.apiUrl + '/customer/report'
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
