@@ -3,3 +3,165 @@
   color: red;
   padding: 5rem 0 5rem 0;
 }
+
+.confirmDialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 25px;
+  border-radius: 4px;
+  gap: 1em;
+  text-align: center;
+  width: 80%;
+  align-self: center;
+}
+
+.confirmDialog .close-button {
+  align-self: flex-end;
+  color: darkgray;
+}
+
+.confirmDialog .rejectButton {
+  border: 3px solid #01bfbf;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: #01bfbf !important;
+  margin-right: 2em;
+  font-weight: bold;
+}
+
+.confirmDialog .acceptButton {
+  border: 3px solid #01bfbf;
+  background-color: #01bfbf !important;
+  color: white !important;
+  padding: 0.7em 2em;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.custom-fav-dialog .dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em;
+  gap: 1em;
+}
+
+.custom-fav-dialog .dialog .img {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-fav-dialog .dialog .img .img1 {
+  position: relative;
+}
+.custom-fav-dialog .dialog .img .img2 {
+  position: absolute;
+  top: 25%;
+}
+
+.custom-fav-dialog .dialog .closeButton {
+  align-self: flex-end;
+  color: darkgray;
+}
+
+.custom-fav-dialog .dialog h1 {
+  align-self: center;
+  font-family: "Mulish";
+  font-weight: 600;
+  color: #00e696;
+  font-size: 32px;
+}
+
+.custom-fav-dialog .dialog p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.custom-fav-dialog .dialog .continueButton {
+  border: none;
+  border-radius: 4px;
+  padding: 0.7em 2em;
+  background-color: #01bfbf;
+  color: white;
+  align-self: center;
+  width: 50%;
+}
+
+@media (min-width: 1024px) {
+  .confirmDialog {
+    width: 500px;
+    gap: 2em;
+  }
+
+  .confirmDialog .rejectButton {
+    border: 3px solid #01bfbf;
+    border-radius: 4px;
+    padding: 0.3em 3em;
+    color: #01bfbf;
+    margin-right: 3em;
+    font-weight: bold;
+  }
+
+  .confirmDialog .acceptButton {
+    border: 3px solid #01bfbf;
+    background-color: #01bfbf;
+    color: white;
+    padding: 0.3em 4em;
+    margin-left: 3em;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  .custom-fav-dialog .dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em;
+    gap: 1em;
+  }
+
+  .custom-fav-dialog .dialog .img {
+    display: flex;
+    justify-content: center;
+  }
+
+  .custom-fav-dialog .dialog .img .img1 {
+    position: relative;
+  }
+  .custom-fav-dialog .dialog .img .img2 {
+    position: absolute;
+    top: 26%;
+  }
+
+  .custom-fav-dialog .dialog .closeButton {
+    align-self: flex-end;
+    color: darkgray;
+  }
+
+  .custom-fav-dialog .dialog h1 {
+    align-self: center;
+    font-family: "Mulish";
+    font-weight: 600;
+    color: #00e696;
+    font-size: 32px;
+  }
+
+  .custom-fav-dialog .dialog p {
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .custom-fav-dialog .dialog .continueButton {
+    border: none;
+    border-radius: 4px;
+    padding: 0.7em 2em;
+    background-color: #01bfbf;
+    color: white;
+    align-self: center;
+    width: 50%;
+  }
+}

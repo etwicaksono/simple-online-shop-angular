@@ -1,1 +1,10 @@
-<p>customer-dialog works!</p>
+<div class="dialog">
+  <mat-icon class="closeButton" style="cursor: pointer;" (click)="onCloseClick()">close</mat-icon>
+  <div class="img">
+    <img class="img1" src="assets/Ellipse 7.png">
+    <img class="img2" src="assets/Vector.png">
+  </div>
+  <h1 mat-dialog-title>Sukses</h1>
+  <p>{{ message }}</p>
+  <button (click)="onCloseClick()" class="continueButton">Continue</button>
+</div>

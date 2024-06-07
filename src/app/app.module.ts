@@ -20,6 +20,8 @@ import { CustomerDialogComponent } from './core/components/customer-dialog/custo
 import { ConfirmationService } from 'primeng/api';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonModule } from 'primeng/button';
+import { ItemListComponent } from './feature/item/item-list/item-list.component';
+import { OrderListComponent } from './feature/order/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ButtonModule } from 'primeng/button';
     CustomerListComponent,
     HeaderComponent,
     CustomerDialogComponent,
+    ItemListComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,

@@ -72,3 +72,21 @@
     </div>
   </section>
 </div>
+
+<p-confirmDialog #cd>
+  <ng-template pTemplate="headless" let-message>
+    <div class="confirmDialog">
+      <p-button class="close-button" (click)="cd.reject()" [outlined]="false" [text]="true" [severity]="'danger'">
+        <mat-icon>close</mat-icon>
+      </p-button>
+      <div>
+        <img src="assets/error_outline_24px.png">
+      </div>
+      <p>Apakah Anda yakin ingin menghapus resep ini dari favorit?</p>
+      <div class="confirmButton">
+        <button class="rejectButton" (click)="cd.reject()">Tidak</button>
+        <button class="acceptButton" (click)="cd.accept()">Ya</button>
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>

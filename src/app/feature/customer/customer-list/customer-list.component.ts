@@ -9,6 +9,7 @@ import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerDialogComponent } from '@app/core/components/customer-dialog/customer-dialog.component';
 import { environment } from 'src/environment/environment';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-customer-list',
@@ -93,18 +94,29 @@ export class CustomerListComponent implements AfterViewInit {
 
   deleteCustomer(customer: Customer): void {
     // Implement delete functionality
-    console.log('Delete customer', customer);
-    this.customerService.deleteCustomer(customer.customerID)
     this.confirmationService.confirm({
       message: `Apakah Anda yakin ingin menghapus resep ini dari favorit?`,
       header: 'Konfirmasi',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         if (customer === undefined || customer === null) return;
-        this.customerService.deleteCustomer(customer.customerID).subscribe(response => {
+        this.customerService.deleteCustomer(customer.customerID).pipe(
+          catchError(error => {
+            console.error('Error deleting customer:', error);
+            // Optionally, show an error message to the user
+            const dialogRef = this.dialog.open(CustomerDialogComponent, {
+              panelClass: 'custom-fav-dialog',
+              data: { message: 'Error deleting customer. Please try again later.' }
+            });
+            // Return an empty observable to complete the stream
+            return of(null);
+          })
+        ).subscribe(response => {
+          console.log('response :', response) // #marked: debug
           const dialogRef = this.dialog.open(CustomerDialogComponent, {
             panelClass: 'custom-fav-dialog',
           })
+          this.loadCustomerList()
         })
       },
       reject: (type: ConfirmEventType) => {
