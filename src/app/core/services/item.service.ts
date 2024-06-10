@@ -19,7 +19,14 @@ export class ItemService {
     return this.httpClient.put<any>(`${environment.apiUrl}/item/update/${itemId}`, formData);
   }
 
-  getItemList(params: { pageNumber?: number, pageSize?: number, sortDirection?: string, itemName?: string, itemCode?: string, isAvailable?: boolean }): Observable<any> {
+  getItemList(params: {
+    pageNumber?: number,
+    pageSize?: number,
+    sortDirection?: string,
+    itemName?: string,
+    itemCode?: string,
+    isAvailable?: boolean
+  }): Observable<any> {
     let query = '';
     for (const key in params) {
       if (params[key as keyof typeof params] !== undefined && params[key as keyof typeof params] !== null) {
