@@ -1,5 +1,5 @@
 export class Item {
-  itemId!: number
+  itemsID!: number
   itemsName?: string
   itemsCode?: string
   stock!: number

@@ -65,7 +65,6 @@ export class CustomerListComponent implements AfterViewInit {
     if (this.isActive != null) params.isActive = this.isActive
 
     this.customerService.getCustomerList(params).subscribe((res) => {
-      console.log('res :', res)
       this.customerList = res.data.data;
       this.dataSource = new MatTableDataSource<Customer>(this.customerList);
     })
@@ -95,7 +94,7 @@ export class CustomerListComponent implements AfterViewInit {
   deleteCustomer(customer: Customer): void {
     // Implement delete functionality
     this.confirmationService.confirm({
-      message: `Apakah Anda yakin ingin menghapus resep ini dari favorit?`,
+      message: `Apakah Anda yakin ingin menghapus customer ini?`,
       header: 'Konfirmasi',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -112,7 +111,6 @@ export class CustomerListComponent implements AfterViewInit {
             return of(null);
           })
         ).subscribe(response => {
-          console.log('response :', response) // #marked: debug
           const dialogRef = this.dialog.open(CustomerDialogComponent, {
             panelClass: 'custom-fav-dialog',
           })
