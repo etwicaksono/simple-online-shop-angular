@@ -31,6 +31,9 @@ import { ItemEditComponent } from './feature/item/item-edit/item-edit.component'
 import { OrderCreateComponent } from './feature/order/order-create/order-create.component';
 import { OrderDetailComponent } from './feature/order/order-detail/order-detail.component';
 import { OrderEditComponent } from './feature/order/order-edit/order-edit.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,10 @@ import { OrderEditComponent } from './feature/order/order-edit/order-edit.compon
     MatPaginator,
     MatDialogModule,
     ConfirmDialogModule,
+    NgxDropzoneModule,
+    QuillModule.forRoot({}),
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     Title,
