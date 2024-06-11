@@ -6,6 +6,10 @@
     <div class="row">
       <div class="col">
         <h1>Customer List</h1>
+        <a class="btn btn-success text-white p-2 mb-2" routerLink="/customer/create"><mat-icon
+            class="me-2">add</mat-icon>
+          Add Customer
+        </a>
         <a class="btn btn-info float-end text-white p-2" href="{{ printReportUrl }}"><mat-icon
             class="me-2">print</mat-icon>
           Print Customer
@@ -55,7 +59,7 @@
           <td mat-cell *matCellDef="let customer">
             <p-button class="m-2" (click)="viewDetails(customer)" title="View Detail" severity="info"
               [outlined]="true"><mat-icon class="text-info">visibility</mat-icon></p-button>
-            <p-button class="m-2" (click)="updateCustomer(customer)" title="Edit" severity="warning"
+            <p-button class="m-2" (click)="editCustomer(customer)" title="Edit" severity="warning"
               [outlined]="true"><mat-icon class="text-warning">edit</mat-icon></p-button>
             <p-button class="m-2" (click)="deleteCustomer(customer)" title="Delete" severity="danger"
               [outlined]="true"><mat-icon class="text-danger">delete</mat-icon></p-button>

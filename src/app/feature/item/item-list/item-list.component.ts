@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { CustomerDialogComponent } from '@app/core/components/customer-dialog/customer-dialog.component';
 import { Item } from '@app/core/models/item';
 import { ItemService } from '@app/core/services/item.service';
@@ -34,7 +35,8 @@ export class ItemListComponent implements AfterViewInit {
     private _liveAnnouncer: LiveAnnouncer,
     private itemService: ItemService,
     private confirmationService: ConfirmationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -82,13 +84,11 @@ export class ItemListComponent implements AfterViewInit {
   }
 
   viewDetails(item: Item): void {
-    // Implement view details functionality
-    console.log('View details for', item);
+    this.router.navigate(['/item/detail', item.itemsID]);
   }
 
-  updateItem(item: Item): void {
-    // Implement update functionality
-    console.log('Update item', item);
+  editItem(item: Item): void {
+    this.router.navigate(['/item/edit', item.itemsID]);
   }
 
   deleteItem(item: Item): void {
@@ -98,10 +98,6 @@ export class ItemListComponent implements AfterViewInit {
       header: 'Konfirmasi',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        console.log('item === undefined || item === null: ', item === undefined || item === null)
-        console.log('item === undefined: ', item === undefined)
-        console.log('item === null: ', item === null)
-        console.log('item : ', item)
         if (item === undefined || item === null) return;
         this.itemService.deleteItem(item.itemsID).pipe(
           catchError(error => {

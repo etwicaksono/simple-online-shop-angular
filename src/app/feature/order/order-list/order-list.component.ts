@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { CustomerDialogComponent } from '@app/core/components/customer-dialog/customer-dialog.component';
 import { Order } from '@app/core/models/order';
 import { OrderService } from '@app/core/services/order.service';
@@ -34,16 +35,17 @@ export class OrderListComponent implements AfterViewInit {
     private _liveAnnouncer: LiveAnnouncer,
     private orderService: OrderService,
     private confirmationService: ConfirmationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit(): void {
-    this.loadCustomerList()
+    this.loadOrderList()
   }
 
-  loadCustomerList(): void {
+  loadOrderList(): void {
     let params: {
       pageNumber?: number
       pageSize?: number
@@ -82,13 +84,11 @@ export class OrderListComponent implements AfterViewInit {
   }
 
   viewDetails(order: Order): void {
-    // Implement view details functionality
-    console.log('View details for', order);
+    this.router.navigate(['/order/detail', order.orderId]);
   }
 
-  updateOrder(order: Order): void {
-    // Implement update functionality
-    console.log('Update order', order);
+  editOrder(order: Order): void {
+    this.router.navigate(['/order/edit', order.orderId]);
   }
 
   deleteOrder(order: Order): void {
@@ -114,7 +114,7 @@ export class OrderListComponent implements AfterViewInit {
           const dialogRef = this.dialog.open(CustomerDialogComponent, {
             panelClass: 'custom-fav-dialog',
           })
-          this.loadCustomerList()
+          this.loadOrderList()
         })
       },
       reject: (type: ConfirmEventType) => {

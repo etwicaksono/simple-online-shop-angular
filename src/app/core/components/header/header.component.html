@@ -4,9 +4,9 @@
     <h1>BTPN Online Shop</h1>
   </div>
   <div class="nav">
-    <button mat-button routerLinkActive="router-link-active" routerLink="/customer-list">Customer</button>
-    <button mat-button routerLinkActive="router-link-active" routerLink="/item-list">Item</button>
-    <button mat-button routerLinkActive="router-link-active" routerLink="/order-list">Order</button>
+    <button mat-button routerLink="/customer/list" [class.router-link-active]="isCustomerActive">Customer</button>
+    <button mat-button routerLink="/item/list" [class.router-link-active]="isItemActive">Item</button>
+    <button mat-button routerLink="/order/list" [class.router-link-active]="isOrderActive">Order</button>
   </div>
   <div class="menu">
     <button mat-button (click)="sidebarVisible = true" [ngStyle]="{color: 'white'}">
@@ -25,15 +25,15 @@
 
         <div class="mNavButton">
           <mat-icon>group</mat-icon>
-          <button mat-button routerLinkActive="router-link-active" routerLink="/customer-list">Customer</button>
+          <button mat-button routerLink="/customer/list" [class.router-link-active]="isCustomerActive">Customer</button>
         </div>
         <div class="mNavButton">
           <mat-icon>category</mat-icon>
-          <button mat-button routerLinkActive="router-link-active" routerLink="/item-list">Item</button>
+          <button mat-button routerLink="/item/list" [class.router-link-active]="isItemActive">Item</button>
         </div>
         <div class="mNavButton">
           <mat-icon>shopping_cart</mat-icon>
-          <button mat-button routerLinkActive="router-link-active" routerLink="/order-list">Order</button>
+          <button mat-button routerLink="/order/list" [class.router-link-active]="isOrderActive">Order</button>
         </div>
       </div>
     </p-sidebar>

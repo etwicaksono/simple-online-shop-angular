@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CustomerDialogComponent } from '@app/core/components/customer-dialog/customer-dialog.component';
 import { environment } from 'src/environment/environment';
 import { catchError, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -34,7 +35,8 @@ export class CustomerListComponent implements AfterViewInit {
     private _liveAnnouncer: LiveAnnouncer,
     private customerService: CustomerService,
     private confirmationService: ConfirmationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -82,13 +84,11 @@ export class CustomerListComponent implements AfterViewInit {
   }
 
   viewDetails(customer: Customer): void {
-    // Implement view details functionality
-    console.log('View details for', customer);
+    this.router.navigate(['/customer/detail', customer.customerID])
   }
 
-  updateCustomer(customer: Customer): void {
-    // Implement update functionality
-    console.log('Update customer', customer);
+  editCustomer(customer: Customer): void {
+    this.router.navigate(['/customer/edit', customer.customerID])
   }
 
   deleteCustomer(customer: Customer): void {

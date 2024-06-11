@@ -22,6 +22,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ItemListComponent } from './feature/item/item-list/item-list.component';
 import { OrderListComponent } from './feature/order/order-list/order-list.component';
+import { CustomerCreateComponent } from './feature/customer/customer-create/customer-create.component';
+import { CustomerEditComponent } from './feature/customer/customer-edit/customer-edit.component';
+import { CustomerDetailComponent } from './feature/customer/customer-detail/customer-detail.component';
+import { ItemCreateComponent } from './feature/item/item-create/item-create.component';
+import { ItemDetailComponent } from './feature/item/item-detail/item-detail.component';
+import { ItemEditComponent } from './feature/item/item-edit/item-edit.component';
+import { OrderCreateComponent } from './feature/order/order-create/order-create.component';
+import { OrderDetailComponent } from './feature/order/order-detail/order-detail.component';
+import { OrderEditComponent } from './feature/order/order-edit/order-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +40,15 @@ import { OrderListComponent } from './feature/order/order-list/order-list.compon
     CustomerDialogComponent,
     ItemListComponent,
     OrderListComponent,
+    CustomerCreateComponent,
+    CustomerEditComponent,
+    CustomerDetailComponent,
+    ItemCreateComponent,
+    ItemDetailComponent,
+    ItemEditComponent,
+    OrderCreateComponent,
+    OrderDetailComponent,
+    OrderEditComponent,
   ],
   imports: [
     BrowserModule,
