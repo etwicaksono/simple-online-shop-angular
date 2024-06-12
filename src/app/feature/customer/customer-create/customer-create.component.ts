@@ -16,29 +16,67 @@ export class CustomerCreateComponent {
     private router: Router
   ) { }
 
-  customer = {
-    customer_name: '',
-    customer_address: '',
-    customer_code: '',
-    customer_phone: '',
-    is_active: true,
-    last_order_date: '',
-    pic: ''
-  };
+  addCustomerForm: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    code: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    isActive: new FormControl(true, Validators.required),
+    pic: new FormControl([]),
+  });
+  picFiles: File[] = []
 
   onSubmit() {
-    // Handle form submission logic here
-    console.log('Form submitted!', this.customer);
+    if (this.addCustomerForm.invalid) {
+      console.log("invalid form");
+      this.markFormGroupTouched(this.addCustomerForm);
+      return;
+    }
+
+    const formCustomer = this.prepareFormData(this.addCustomerForm.value);
+
+    this.customerService.createCustomer(formCustomer).subscribe({
+      next: (res: any) => {
+        this.router.navigate(['/customer/list']);
+      },
+      error: (res: HttpErrorResponse) => {
+        console.log("error: ", res);
+
+        switch (res.error.status) {
+          case "VALIDATION ERROR": {
+            for (let field in res.error.data) {
+              const value = res.error.data[field];
+              this.addCustomerForm.get(field)?.setErrors({ 'incorrect': value });
+            }
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      }
+    });
   }
 
-  files: File[] = [];
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(controlName => {
+      const control = formGroup.get(controlName);
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      } else {
+        if (control) {
+          control.markAsTouched();
+        }
+      }
+    });
+  }
 
   // on select file
   onSelect(event: any) {
     console.log(event);
-    this.files.push(...event.addedFiles);
+    this.picFiles.push(...event.addedFiles);
     const selectedFiles: File[] = event.addedFiles;
-    const imageUrls = this.addRecipeForm.get('imageUrl') as FormControl;
+    const imageUrls = this.addCustomerForm.get('pic') as FormControl;
 
     const currentImages = imageUrls.value || [];
 
@@ -55,9 +93,9 @@ export class CustomerCreateComponent {
   // on remove file
   onRemove(event: any) {
     console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
+    this.picFiles.splice(this.picFiles.indexOf(event), 1);
 
-    const imageUrls = this.addRecipeForm.get('imageUrl') as FormControl;
+    const imageUrls = this.addCustomerForm.get('pic') as FormControl;
     const currentImages = imageUrls.value || [];
 
     const index = currentImages.findIndex(
@@ -70,120 +108,21 @@ export class CustomerCreateComponent {
     }
   }
 
-  addRecipeForm: FormGroup = new FormGroup({
-    recipeName: new FormControl('', Validators.required),
-    categories: new FormGroup({
-      categoryId: new FormControl(''),
-      categoryName: new FormControl(''),
-    }),
-    levels: new FormGroup({
-      levelId: new FormControl(''),
-      levelName: new FormControl(''),
-    }),
-    userId: new FormControl('372'),
-    timeCook: new FormControl('', Validators.required),
-    ingridient: new FormControl('', Validators.required),
-    howToCook: new FormControl('', Validators.required),
-    imageUrl: new FormControl([]),
-  });
-
-  changeCategory(e: any) {
-    console.log(e.target.value);
-    const categoryId = e.target.value;
-    let categoryName = '';
-
-    switch (categoryId) {
-      case '0':
-        categoryName = 'Lunch';
-        break;
-      case '1':
-        categoryName = 'Breakfast';
-        break;
-      case '2':
-        categoryName = 'Dinner';
-        break;
-      case '3':
-        categoryName = 'Snack';
-        break;
-      case '7':
-        categoryName = 'Lunch';
-        break;
-      case '8':
-        categoryName = 'Lunch';
-        break;
-      default:
-        categoryName = '';
-    }
-
-    this.addRecipeForm.get('categories')?.setValue({
-      categoryId: categoryId,
-      categoryName: categoryName,
-    });
-  }
-
-  changeLevel(e: any) {
-    const levelId = e.target.value;
-    let levelName = '';
-
-    switch (levelId) {
-      case '0':
-        levelName = 'Master Chef';
-        break;
-      case '1':
-        levelName = 'Hard';
-        break;
-      case '2':
-        levelName = 'Medium';
-        break;
-      case '3':
-        levelName = 'Easy';
-        break;
-      case '4':
-        levelName = 'Master Chef';
-        break;
-      default:
-        levelName = '';
-    }
-
-    this.addRecipeForm.get('levels')?.setValue({
-      levelId: levelId,
-      levelName: levelName,
-    });
-  }
-
-  addRecipe() {
-    console.log(this.addRecipeForm);
-
-    const formRecipes = this.prepareFormData(this.addRecipeForm.value);
-
-    this.customerService.createCustomer(formRecipes).subscribe(
-      (res: any) => {
-        this.router.navigate(['/daftar-resep']);
-        // this.addRecipeForm.reset();
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
-  }
-
-  prepareFormData(addRecipeForm2Value: any): FormData {
+  prepareFormData(addCustomerForm2Value: any): FormData {
     const formData = new FormData();
 
-    formData.append(
-      'request',
-      new Blob([JSON.stringify(addRecipeForm2Value)], {
-        type: 'application/json',
-      })
-    );
-
-    for (let i = 0; i < addRecipeForm2Value.imageUrl.length; i++) {
-      formData.append(
-        'file',
-        addRecipeForm2Value.imageUrl[i].file,
-        addRecipeForm2Value.imageUrl[i].file.name
-      );
+    for (let key in addCustomerForm2Value) {
+      const itemValue = addCustomerForm2Value[key]
+      if (key == "pic") {
+        itemValue.forEach((fileItem: FileHandle) => {
+          formData.append(key, fileItem.file, fileItem.file.name)
+        })
+      } else {
+        formData.append(key, itemValue)
+      }
     }
+
+
     return formData;
   }
 }
