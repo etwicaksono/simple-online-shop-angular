@@ -1,2 +1,75 @@
 <app-header></app-header>
-<p>customer-edit works!</p>
+
+
+<div class="container mt-3">
+  <h2>Customer Edit Form</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="editCustomerForm" class="card">
+    <div class="card-body">
+      <div class="mb-2">
+        <label for="customer_name" class="form-label mr-2">Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="customer_name" required formControlName="name" autocomplete="off">
+        <small class="text-danger"
+          *ngIf="editCustomerForm.get('name')?.hasError('required') && editCustomerForm.get('name')?.touched">Name is
+          required.</small>
+        <small class="text-danger" *ngIf="editCustomerForm.get('name')?.hasError('incorrect')">{{
+          editCustomerForm.get('name')?.getError('incorrect')?.message }}</small>
+      </div>
+      <div class="mb-2">
+        <label for="customer_address" class="form-label mr-2">Address <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="customer_address" required formControlName="address"
+          autocomplete="off">
+        <small class="text-danger"
+          *ngIf="editCustomerForm.get('address')?.hasError('required') && editCustomerForm.get('address')?.touched">Address
+          is
+          required.</small>
+        <small class="text-danger" *ngIf="editCustomerForm.get('address')?.hasError('incorrect')">{{
+          editCustomerForm.get('address')?.getError('incorrect')?.message }}</small>
+      </div>
+      <div class="mb-2">
+        <label for="customer_code" class="form-label mr-2">Code <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="customer_code" required formControlName="code" autocomplete="off">
+        <small class="text-danger"
+          *ngIf="editCustomerForm.get('code')?.hasError('required') && editCustomerForm.get('code')?.touched">Code is
+          required.</small>
+        <small class="text-danger" *ngIf="editCustomerForm.get('code')?.hasError('incorrect')">{{
+          editCustomerForm.get('code')?.getError('incorrect')?.message }}</small>
+      </div>
+      <div class="mb-2">
+        <label for="customer_phone" class="form-label mr-2">Phone <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="customer_phone" required formControlName="phone" autocomplete="off">
+        <small class="text-danger"
+          *ngIf="editCustomerForm.get('phone')?.hasError('required') && editCustomerForm.get('phone')?.touched">Phone is
+          required.</small>
+        <small class="text-danger" *ngIf="editCustomerForm.get('phone')?.hasError('incorrect')">{{
+          editCustomerForm.get('phone')?.getError('incorrect')?.message }}</small>
+      </div>
+      <div class="mb-2">
+        <label for="pic" class="form-label mr-2">Picture</label>
+        <div *ngIf="imagePreview!=''" class="mb-2">
+          <img class="mb-2" [src]="imagePreview" alt="preview" width="100" />
+        </div>
+        <div ngx-dropzone [accept]="'image/*'" [multiple]="false" (change)="onSelect($event)">
+          <ngx-dropzone-label>
+            <div>
+              <p>
+                <strong>Click to upload</strong> or drag and drop
+              </p>
+              <p>PNG, JPG, JPEG (MAX 2 MB)</p>
+            </div>
+          </ngx-dropzone-label>
+          <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of picFiles" [file]="f"
+            [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+          </ngx-dropzone-image-preview>
+          <small class="text-danger" *ngIf="editCustomerForm.get('pic')?.hasError('incorrect')">{{
+            editCustomerForm.get('pic')?.getError('incorrect')?.message }}</small>
+        </div>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="is_active" formControlName="isActive">
+        <label class="form-check-label" for="is_active">Active</label>
+      </div>
+      <button type="submit" class="btn btn-primary my-3 float-end">Submit</button>
+    </div>
+  </form>
+</div>
