@@ -46,7 +46,7 @@ export class CustomerCreateComponent {
           case "VALIDATION ERROR": {
             for (let field in res.error.data) {
               const value = res.error.data[field];
-              this.addCustomerForm.get(field)?.setErrors({ 'incorrect': value });
+              this.addCustomerForm.get(field)?.setErrors({ 'incorrect': { 'message': value } });
             }
             break;
           }

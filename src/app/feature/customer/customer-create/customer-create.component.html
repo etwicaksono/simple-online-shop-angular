@@ -9,32 +9,39 @@
         <label for="customer_name" class="form-label mr-2">Name <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="customer_name" required formControlName="name" autocomplete="off">
         <small class="text-danger"
-          *ngIf="addCustomerForm.get('name')?.invalid && addCustomerForm.get('name')?.touched">Name is required.</small>
-        <small class="text-danger error-text error-name"></small>
+          *ngIf="addCustomerForm.get('name')?.hasError('required') && addCustomerForm.get('name')?.touched">Name is
+          required.</small>
+        <small class="text-danger" *ngIf="addCustomerForm.get('name')?.hasError('incorrect')">{{
+          addCustomerForm.get('name')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
         <label for="customer_address" class="form-label mr-2">Address <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="customer_address" required formControlName="address"
           autocomplete="off">
         <small class="text-danger"
-          *ngIf="addCustomerForm.get('address')?.invalid && addCustomerForm.get('address')?.touched">Address is
+          *ngIf="addCustomerForm.get('address')?.hasError('required') && addCustomerForm.get('address')?.touched">Address
+          is
           required.</small>
-        <small class="text-danger error-text error-address"></small>
+        <small class="text-danger" *ngIf="addCustomerForm.get('address')?.hasError('incorrect')">{{
+          addCustomerForm.get('address')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
         <label for="customer_code" class="form-label mr-2">Code <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="customer_code" required formControlName="code" autocomplete="off">
         <small class="text-danger"
-          *ngIf="addCustomerForm.get('code')?.invalid && addCustomerForm.get('code')?.touched">Code is required.</small>
-        <small class="text-danger error-text error-code"></small>
+          *ngIf="addCustomerForm.get('code')?.hasError('required') && addCustomerForm.get('code')?.touched">Code is
+          required.</small>
+        <small class="text-danger" *ngIf="addCustomerForm.get('code')?.hasError('incorrect')">{{
+          addCustomerForm.get('code')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
         <label for="customer_phone" class="form-label mr-2">Phone <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="customer_phone" required formControlName="phone" autocomplete="off">
         <small class="text-danger"
-          *ngIf="addCustomerForm.get('phone')?.invalid && addCustomerForm.get('phone')?.touched">Phone is
+          *ngIf="addCustomerForm.get('phone')?.hasError('required') && addCustomerForm.get('phone')?.touched">Phone is
           required.</small>
-        <small class="text-danger error-text error-phone"></small>
+        <small class="text-danger" *ngIf="addCustomerForm.get('phone')?.hasError('incorrect')">{{
+          addCustomerForm.get('phone')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
         <label for="pic" class="form-label mr-2">Picture</label>
@@ -51,12 +58,12 @@
             [removable]="true" (removed)="onRemove(f)">
             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
           </ngx-dropzone-image-preview>
+          <small class="text-danger" *ngIf="addCustomerForm.get('pic')?.hasError('incorrect')">{{
+            addCustomerForm.get('pic')?.getError('incorrect')?.message }}</small>
         </div>
-        <small class="text-danger error-text error-pic"></small>
       </div>
       <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="is_active" formControlName="isActive">
-        <small class="text-danger error-text error-isActive"></small>
         <label class="form-check-label" for="is_active">Active</label>
       </div>
       <button type="submit" class="btn btn-primary my-3 float-end">Submit</button>
