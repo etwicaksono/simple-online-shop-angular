@@ -2,14 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormHelper } from '@app/core/helpers/form-helper';
-import { FileHandle } from '@app/core/models/file-handle.model';
 import { CustomerService } from '@app/core/services/customer.service';
 
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
-  // styleUrl: './customer-detail.component.css',
   styleUrls: ['./customer-detail.component.css', './../customer-list/customer-list.component.css'],
 })
 export class CustomerDetailComponent implements OnInit {

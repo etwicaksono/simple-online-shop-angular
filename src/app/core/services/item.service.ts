@@ -11,12 +11,12 @@ export class ItemService {
   constructor(private httpClient: HttpClient) { }
 
 
-  createItem(formData: FormData): Observable<any> {
-    return this.httpClient.post<any>(`${environment.apiUrl}/item/create`, formData);
+  createItem(data: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/item/create`, data);
   }
 
-  updateItem(itemId: number, formData: FormData): Observable<any> {
-    return this.httpClient.put<any>(`${environment.apiUrl}/item/update/${itemId}`, formData);
+  updateItem(itemId: number, data: any): Observable<any> {
+    return this.httpClient.put<any>(`${environment.apiUrl}/item/update/${itemId}`, data);
   }
 
   getItemList(params: {

@@ -6,8 +6,8 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="editCustomerForm" class="card">
     <div class="card-body">
       <div class="mb-2">
-        <label for="customer_name" class="form-label mr-2">Name <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="customer_name" required formControlName="name" autocomplete="off">
+        <label for="name" class="form-label mr-2">Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="name" required formControlName="name" autocomplete="off">
         <small class="text-danger"
           *ngIf="editCustomerForm.get('name')?.hasError('required') && editCustomerForm.get('name')?.touched">Name is
           required.</small>
@@ -15,9 +15,8 @@
           editCustomerForm.get('name')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
-        <label for="customer_address" class="form-label mr-2">Address <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="customer_address" required formControlName="address"
-          autocomplete="off">
+        <label for="address" class="form-label mr-2">Address <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="address" required formControlName="address" autocomplete="off">
         <small class="text-danger"
           *ngIf="editCustomerForm.get('address')?.hasError('required') && editCustomerForm.get('address')?.touched">Address
           is
@@ -26,8 +25,8 @@
           editCustomerForm.get('address')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
-        <label for="customer_code" class="form-label mr-2">Code <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="customer_code" required formControlName="code" autocomplete="off">
+        <label for="code" class="form-label mr-2">Code <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="code" required formControlName="code" autocomplete="off">
         <small class="text-danger"
           *ngIf="editCustomerForm.get('code')?.hasError('required') && editCustomerForm.get('code')?.touched">Code is
           required.</small>
@@ -35,8 +34,8 @@
           editCustomerForm.get('code')?.getError('incorrect')?.message }}</small>
       </div>
       <div class="mb-2">
-        <label for="customer_phone" class="form-label mr-2">Phone <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="customer_phone" required formControlName="phone" autocomplete="off">
+        <label for="phone" class="form-label mr-2">Phone <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="phone" required formControlName="phone" autocomplete="off">
         <small class="text-danger"
           *ngIf="editCustomerForm.get('phone')?.hasError('required') && editCustomerForm.get('phone')?.touched">Phone is
           required.</small>

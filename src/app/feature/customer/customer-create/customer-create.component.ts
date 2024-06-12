@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormHelper } from '@app/core/helpers/form-helper';
 import { FileHandle } from '@app/core/models/file-handle.model';
 import { CustomerService } from '@app/core/services/customer.service';
 
@@ -29,7 +30,7 @@ export class CustomerCreateComponent {
   onSubmit() {
     if (this.addCustomerForm.invalid) {
       console.log("invalid form");
-      this.markFormGroupTouched(this.addCustomerForm);
+      FormHelper.markFormGroupTouched(this.addCustomerForm);
       return;
     }
 
@@ -53,19 +54,6 @@ export class CustomerCreateComponent {
           default: {
             break;
           }
-        }
-      }
-    });
-  }
-
-  private markFormGroupTouched(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(controlName => {
-      const control = formGroup.get(controlName);
-      if (control instanceof FormGroup) {
-        this.markFormGroupTouched(control);
-      } else {
-        if (control) {
-          control.markAsTouched();
         }
       }
     });
