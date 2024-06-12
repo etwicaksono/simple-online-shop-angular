@@ -1,2 +1,32 @@
 <app-header></app-header>
-<p>item-detail works!</p>
+
+<div class="container mt-3">
+  <h2>Item Detail</h2>
+  <form [formGroup]="detailItemForm" class="card">
+    <div class="card-body">
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Name</p>
+        <p>{{ detailItemForm.get("name")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Code</p>
+        <p>{{ detailItemForm.get("code")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Stock</p>
+        <p>{{ detailItemForm.get("stock")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Price</p>
+        <p>{{ detailItemForm.get("price")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Available</p>
+        <p>
+          <span *ngIf="detailItemForm.get('isAvailable')?.value" class="active-label">AVAILABLE</span>
+          <span *ngIf="!detailItemForm.get('isAvailable')?.value" class="inactive-label">UNAVAILABLE</span>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>

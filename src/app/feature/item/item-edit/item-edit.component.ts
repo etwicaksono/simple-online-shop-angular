@@ -34,7 +34,6 @@ export class ItemEditComponent implements OnInit {
   loadItem() {
     this.itemService.findItem(this.itemId).subscribe({
       next: (res: any) => {
-        console.log("res: ", res)
         this.editItemForm.get('name')?.setValue(res.data.itemsName);
         this.editItemForm.get('code')?.setValue(res.data.itemsCode);
         this.editItemForm.get('stock')?.setValue(res.data.stock);

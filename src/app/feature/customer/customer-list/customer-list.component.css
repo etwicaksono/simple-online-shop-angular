@@ -13,20 +13,6 @@ h1 {
   margin-top: 2rem;
 }
 
-.active-label {
-  color: white;
-  font-weight: bold;
-  background-color: green;
-  padding: 0.5rem;
-}
-
-.inactive-label {
-  color: white;
-  background-color: red;
-  font-weight: bold;
-  padding: 0.5rem;
-}
-
 .print-customer-button{
   background-color: #01bfbf;
   color: #fff;

@@ -21,7 +21,7 @@ export class CustomerEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.customerId = parseInt(this.route.snapshot.paramMap.get('customerID') || '0');
+    this.customerId = Number(this.route.snapshot.paramMap.get('customerID'));
     this.editCustomerForm = new FormGroup({
       name: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),

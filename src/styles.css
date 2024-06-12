@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-.empty-message{
+.empty-message {
   color: red;
   padding: 5rem 0 5rem 0;
 }
@@ -57,6 +57,7 @@
 .custom-fav-dialog .dialog .img .img1 {
   position: relative;
 }
+
 .custom-fav-dialog .dialog .img .img2 {
   position: absolute;
   top: 25%;
@@ -89,6 +90,20 @@
   color: white;
   align-self: center;
   width: 50%;
+}
+
+.active-label {
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  padding: 0.5rem;
+}
+
+.inactive-label {
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  padding: 0.5rem;
 }
 
 @media (min-width: 1024px) {
@@ -132,6 +147,7 @@
   .custom-fav-dialog .dialog .img .img1 {
     position: relative;
   }
+
   .custom-fav-dialog .dialog .img .img2 {
     position: absolute;
     top: 26%;
@@ -163,5 +179,19 @@
     color: white;
     align-self: center;
     width: 50%;
+  }
+
+  .active-label {
+    color: white;
+    font-weight: bold;
+    background-color: green;
+    padding: 0.5rem;
+  }
+
+  .inactive-label {
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    padding: 0.5rem;
   }
 }
