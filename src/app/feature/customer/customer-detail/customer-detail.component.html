@@ -1,2 +1,39 @@
 <app-header></app-header>
-<p>customer-detail works!</p>
+
+
+<div class="container mt-3">
+  <h2>Customer Detail</h2>
+  <form [formGroup]="editCustomerForm" class="card">
+    <div class="card-body">
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Name</p>
+        <p>{{ editCustomerForm.get("name")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Address</p>
+        <p>{{ editCustomerForm.get("address")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Code</p>
+        <p>{{ editCustomerForm.get("code")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Phone</p>
+        <p>{{ editCustomerForm.get("phone")?.value }}</p>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Picture</p>
+        <div *ngIf="imagePreview!=''" class="mb-2">
+          <img class="mb-2" [src]="imagePreview" alt="preview" width="100" />
+        </div>
+      </div>
+      <div class="mb-2">
+        <p class="fw-bold mr-2">Active</p>
+        <p>
+          <span *ngIf="editCustomerForm.get('isActive')?.value" class="active-label">ACTIVE</span>
+          <span *ngIf="!editCustomerForm.get('isActive')?.value" class="inactive-label">INACTIVE</span>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
