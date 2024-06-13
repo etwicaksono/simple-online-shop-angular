@@ -11,12 +11,12 @@ export class OrderService {
   constructor(private httpClient: HttpClient) { }
 
 
-  createOrder(formData: FormData): Observable<any> {
-    return this.httpClient.post<any>(`${environment.apiUrl}/order/create`, formData);
+  createOrder(data: any): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiUrl}/order/create`, data);
   }
 
-  updateOrder(orderId: number, formData: FormData): Observable<any> {
-    return this.httpClient.put<any>(`${environment.apiUrl}/order/update/${orderId}`, formData);
+  updateOrder(orderId: number, data: any): Observable<any> {
+    return this.httpClient.put<any>(`${environment.apiUrl}/order/update/${orderId}`, data);
   }
 
   getOrderList(params: {

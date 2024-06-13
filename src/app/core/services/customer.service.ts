@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
@@ -40,5 +40,16 @@ export class CustomerService {
   deleteCustomer(customerId: number): Observable<any> {
     let result = this.httpClient.delete(`${environment.apiUrl}/customer/delete/${customerId}`)
     return result
+  }
+
+  getCustomerForSelect(searchTerm: string = ""): Observable<any> {
+    let params = new HttpParams();
+    if (searchTerm) {
+      params = params.set('pageNumber', 0);
+      params = params.set('pageSize', 0);
+      params = params.set('sortDirection', "ASC");
+      params = params.set('customerName', searchTerm);
+    }
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/customer/list}`, { params });
   }
 }

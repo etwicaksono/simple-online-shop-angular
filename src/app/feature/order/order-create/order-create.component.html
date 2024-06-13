@@ -1,2 +1,38 @@
 <app-header></app-header>
-<p>order-create works!</p>
+
+<div class="container mt-3">
+  <h2>Order Create Form</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="addOrderForm" class="card">
+    <div class="card-body">
+      <div class="mb-2">
+        <label for="name" class="form-label mr-2">Customer <span class="text-danger">*</span></label>
+        <!-- <input type="text" class="form-control" id="name" required formControlName="name" autocomplete="off"> -->
+        <small class="text-danger"
+          *ngIf="addOrderForm.get('name')?.hasError('required') && addOrderForm.get('name')?.touched">Name is
+          required.</small>
+        <small class="text-danger" *ngIf="addOrderForm.get('name')?.hasError('incorrect')">{{
+          addOrderForm.get('name')?.getError('incorrect')?.message }}</small>
+      </div>
+      <div class="mb-2">
+        <label for="code" class="form-label mr-2">Item <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="code" required formControlName="code" autocomplete="off">
+        <small class="text-danger"
+          *ngIf="addOrderForm.get('code')?.hasError('required') && addOrderForm.get('code')?.touched">Code
+          is
+          required.</small>
+        <small class="text-danger" *ngIf="addOrderForm.get('code')?.hasError('incorrect')">{{
+          addOrderForm.get('code')?.getError('incorrect')?.message }}</small>
+      </div>
+      <div class="mb-2">
+        <label for="stock" class="form-label mr-2">Quantity <span class="text-danger">*</span></label>
+        <input type="number" class="form-control" id="stock" required formControlName="stock" autocomplete="off">
+        <small class="text-danger"
+          *ngIf="addOrderForm.get('stock')?.hasError('required') && addOrderForm.get('stock')?.touched">Stock is
+          required.</small>
+        <small class="text-danger" *ngIf="addOrderForm.get('stock')?.hasError('incorrect')">{{
+          addOrderForm.get('stock')?.getError('incorrect')?.message }}</small>
+      </div>
+      <button type="submit" class="btn btn-primary my-3 float-end">Submit</button>
+    </div>
+  </form>
+</div>

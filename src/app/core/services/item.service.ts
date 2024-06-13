@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
@@ -46,5 +46,17 @@ export class ItemService {
   deleteItem(itemId: number): Observable<any> {
     let result = this.httpClient.delete(`${environment.apiUrl}/item/delete/${itemId}`)
     return result
+  }
+
+
+  getItemForSelect(searchTerm: string = ""): Observable<any> {
+    let params = new HttpParams();
+    if (searchTerm) {
+      params = params.set('pageNumber', 0);
+      params = params.set('pageSize', 0);
+      params = params.set('sortDirection', "ASC");
+      params = params.set('itemName', searchTerm);
+    }
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/item/list}`, { params });
   }
 }
