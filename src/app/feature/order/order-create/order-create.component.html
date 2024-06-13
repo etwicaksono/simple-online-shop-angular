@@ -1,40 +1,129 @@
 <app-header></app-header>
 
+
+
+
+
+
+
 <div class="container mt-3">
-  <h2>Order Create Form</h2>
-  <form (ngSubmit)="onSubmit()" [formGroup]="addOrderForm" class="card">
-    <div class="card-body">
-      <div class="mb-2">
-        <label for="name" class="form-label mr-2">Customer <span class="text-danger">*</span></label>
-        <!-- <input type="text" class="form-control" id="name" required formControlName="name" autocomplete="off"> -->
-        <app-customer-select (change)="onSelectCustomerChange($event)">
-        </app-customer-select>
-        <small class="text-danger"
-          *ngIf="addOrderForm.get('name')?.hasError('required') && addOrderForm.get('name')?.touched">Name is
-          required.</small>
-        <small class="text-danger" *ngIf="addOrderForm.get('name')?.hasError('incorrect')">{{
-          addOrderForm.get('name')?.getError('incorrect')?.message }}</small>
-      </div>
-      <div class="mb-2">
-        <label for="code" class="form-label mr-2">Item <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="code" required formControlName="code" autocomplete="off">
-        <small class="text-danger"
-          *ngIf="addOrderForm.get('code')?.hasError('required') && addOrderForm.get('code')?.touched">Code
+	<h2>Order Create Form</h2>
+	<form [formGroup]="addOrderForm"
+		(ngSubmit)="onSubmit()"
+		class="card">
+		<div class="card-body">
+			<div class="mb-2">
+				<label for="customerId"
+					class="form-label mr-2">
+					Customer
+					<span class="text-danger">*</span>
+				</label>
+				<app-customer-select [(ngModel)]="selectedCustomer"
+					formControlName="customerId"></app-customer-select>
+				<div *ngIf="selectedCustomer!=null"
+					class="details">
+					<h5>Customer Details</h5>
+					<p>
+						<strong>Name:</strong>
+						{{ selectedCustomer.name }}
+					</p>
+					<p>
+						<strong>Code:</strong>
+						{{ selectedCustomer.code }}
+					</p>
+					<p>
+						<strong>Phone:</strong>
+						{{ selectedCustomer.phone }}
+					</p>
+					<p>
+						<strong>Address:</strong>
+						{{ selectedCustomer.address }}
+					</p>
+				</div>
+				<small *ngIf="addOrderForm.get('customerId')?.hasError('required') && addOrderForm.get('customerId')?.touched"
+					class="text-danger">
+					Customer
           is
-          required.</small>
-        <small class="text-danger" *ngIf="addOrderForm.get('code')?.hasError('incorrect')">{{
-          addOrderForm.get('code')?.getError('incorrect')?.message }}</small>
-      </div>
-      <div class="mb-2">
-        <label for="stock" class="form-label mr-2">Quantity <span class="text-danger">*</span></label>
-        <input type="number" class="form-control" id="stock" required formControlName="stock" autocomplete="off">
-        <small class="text-danger"
-          *ngIf="addOrderForm.get('stock')?.hasError('required') && addOrderForm.get('stock')?.touched">Stock is
-          required.</small>
-        <small class="text-danger" *ngIf="addOrderForm.get('stock')?.hasError('incorrect')">{{
-          addOrderForm.get('stock')?.getError('incorrect')?.message }}</small>
-      </div>
-      <button type="submit" class="btn btn-primary my-3 float-end">Submit</button>
-    </div>
-  </form>
+          required.
+				</small>
+				<small *ngIf="addOrderForm.get('customerId')?.hasError('incorrect')"
+					class="text-danger">
+					{{
+          addOrderForm.get('customerId')?.getError('incorrect')?.message }}
+				</small>
+			</div>
+			<div class="mb-2">
+				<label for="itemId"
+					class="form-label mr-2">
+					Item
+					<span class="text-danger">*</span>
+				</label>
+				<app-item-select (change)="onSelectItemChange($event)"></app-item-select>
+				<div *ngIf="selectedItem!=null"
+					class="details">
+					<h5>Item Details</h5>
+					<p>
+						<strong>Name:</strong>
+						{{ selectedItem.itemsName }}
+					</p>
+					<p>
+						<strong>Code:</strong>
+						{{ selectedItem.itemsCode }}
+					</p>
+					<p>
+						<strong>Stock:</strong>
+						{{ selectedItem.stock }}
+					</p>
+					<p>
+						<strong>Price:</strong>
+						{{ selectedItem.price }}
+					</p>
+				</div>
+				<small *ngIf="addOrderForm.get('itemId')?.hasError('required') && addOrderForm.get('itemId')?.touched"
+					class="text-danger">
+					Item
+          is
+          required.
+				</small>
+				<small *ngIf="addOrderForm.get('itemId')?.hasError('incorrect')"
+					class="text-danger">
+					{{
+          addOrderForm.get('itemId')?.getError('incorrect')?.message }}
+				</small>
+			</div>
+			<div class="mb-2">
+				<label for="quantity"
+					class="form-label mr-2">
+					Quantity
+					<span class="text-danger">*</span>
+				</label>
+				<input type="number"
+					class="form-control"
+					id="quantity"
+					required
+					formControlName="quantity"
+					autocomplete="off">
+				<small *ngIf="addOrderForm.get('quantity')?.hasError('required') && addOrderForm.get('quantity')?.touched"
+					class="text-danger">
+					Quantity
+          is required.
+				</small>
+				<small *ngIf="!addOrderForm.get('quantity')?.hasError('required') &&addOrderForm.get('quantity')?.hasError('min') && addOrderForm.get('quantity')?.touched"
+					class="text-danger">
+					Minimum
+          quantity
+          is 1.
+				</small>
+				<small *ngIf="addOrderForm.get('quantity')?.hasError('incorrect')"
+					class="text-danger">
+					{{
+          addOrderForm.get('quantity')?.getError('incorrect')?.message }}
+				</small>
+			</div>
+			<button type="submit"
+				class="btn btn-primary my-3 float-end">
+				Submit
+			</button>
+		</div>
+	</form>
 </div>

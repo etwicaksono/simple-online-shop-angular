@@ -46,19 +46,3 @@ ng-select {
   font-size: 14px;
   border-radius: 4px;
 }
-
-/* Details section */
-.details {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 15px;
-}
-
-.details h3 {
-  margin-top: 0;
-}
-
-.details p {
-  margin: 5px 0;
-  font-size: 14px;
-}

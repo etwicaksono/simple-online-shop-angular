@@ -1,0 +1,48 @@
+/* Styles for the ng-select component */
+ng-select {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.ng-select .ng-select-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ng-select .ng-select-container:hover,
+.ng-select .ng-select-container.ng-select-focused {
+  border-color: #007bff;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+  font-size: 14px;
+}
+
+.ng-select .ng-dropdown-panel {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ng-select .ng-dropdown-panel .ng-option {
+  padding: 8px 12px;
+}
+
+.ng-select .ng-dropdown-panel .ng-option.ng-option-selected,
+.ng-select .ng-dropdown-panel .ng-option.ng-option-marked {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Spinner style */
+.ng-select .ng-select-container .ng-loading-spinner {
+  border-color: #ccc;
+  border-top-color: #007bff;
+}
+
+/* Style for the search input */
+.ng-select .ng-select-container .ng-input>input {
+  padding: 4px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+}

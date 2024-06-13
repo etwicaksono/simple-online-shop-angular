@@ -1,18 +1,22 @@
-<ng-select [items]="data" bindLabel="name" [(ngModel)]="selectedItem" (clear)="onClear()" (change)="onChange($event)"
-  placeholder="Select a Customer" (search)="onSearch($event)" [loading]="loading">
-  <ng-template ng-option-tmp let-item="item" let-index="index">
-    <div>
-      <span class="me-5">{{ item.name }}</span> <span class="text-black-50">[Code: {{ item.code }}] [Phone: {{
+<ng-select [items]="data"
+	[ngModel]="selectedItem"
+	[disabled]="isDisabled"
+	[loading]="loading"
+	(clear)="onClear()"
+	(change)="onChange($event)"
+	(search)="onSearch($event)"
+	bindLabel="name"
+	placeholder="Select a Customer">
+	<ng-template ng-option-tmp
+		let-item="item"
+		let-index="index">
+		<div>
+			<span class="me-5">{{ item.name }}</span>
+			<span class="text-black-50">
+				[Code: {{ item.code }}] [Phone: {{
         item.phone
-        }}]</span>
-    </div>
-  </ng-template>
+        }}]
+			</span>
+		</div>
+	</ng-template>
 </ng-select>
-
-<div *ngIf="selectedItem!=null" class="details">
-  <h5>Customer Details</h5>
-  <p><strong>Name:</strong> {{ selectedItem.name }}</p>
-  <p><strong>Code:</strong> {{ selectedItem.code }}</p>
-  <p><strong>Phone:</strong> {{ selectedItem.phone }}</p>
-  <p><strong>Address:</strong> {{ selectedItem.address }}</p>
-</div>

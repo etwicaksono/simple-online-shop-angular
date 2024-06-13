@@ -1,7 +1,15 @@
 {
-   "sonarlint.connectedMode.project": {
-      "connectionId": "http-localhost-9099",
-      "projectKey": "BTPN-Angular-Online-Shop"
-   },
-   "editor.formatOnSave": true
+  "sonarlint.connectedMode.project": {
+    "connectionId": "http-localhost-9099",
+    "projectKey": "BTPN-Angular-Online-Shop"
+  },
+  "editor.formatOnSave": true,
+  "notebook.defaultFormatter": null,
+  "editor.defaultFormatter": "sdteotonio.angular-formatter",
+  "[html]": {
+    "editor.defaultFormatter": "sdteotonio.angular-formatter"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

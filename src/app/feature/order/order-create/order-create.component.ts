@@ -18,13 +18,12 @@ export class OrderCreateComponent {
     private router: Router
   ) { }
 
-  selectedValue: any;
+  selectedCustomer: any = null;
+  selectedItem: any = null;
   addOrderForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    code: new FormControl('', Validators.required),
-    stock: new FormControl(null, Validators.required),
-    price: new FormControl(null, Validators.required),
-    isAvailable: new FormControl(true, Validators.required),
+    customerId: new FormControl(null, Validators.required),
+    itemId: new FormControl(null, Validators.required),
+    quantity: new FormControl(0, [Validators.required, Validators.min(1)]),
   });
 
   onSubmit() {
@@ -66,7 +65,8 @@ export class OrderCreateComponent {
     });
   }
 
-  onSelectCustomerChange(selected: any): void {
-    this.selectedValue = selected;
+  onSelectItemChange(selected: any): void {
+    this.selectedItem = selected;
   }
+
 }

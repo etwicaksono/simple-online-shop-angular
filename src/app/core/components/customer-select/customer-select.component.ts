@@ -1,20 +1,46 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CustomerService } from '@app/core/services/customer.service';
 
 @Component({
   selector: 'app-customer-select',
   templateUrl: './customer-select.component.html',
-  styleUrl: './customer-select.component.css'
+  styleUrl: './customer-select.component.css',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CustomerSelectComponent),
+      multi: true
+    }
+  ]
 })
-export class CustomerSelectComponent {
+export class CustomerSelectComponent implements OnInit, ControlValueAccessor {
   data: any[] = [];
-  selectedItem: any = null;
   loading = false;
+  isDisabled = false; // State to track if the component is disabled
 
+  @Input() selectedItem: any;
   @Output() change = new EventEmitter<any>();
 
   constructor(private customerService: CustomerService) { }
+
+  // ControlValueAccessor implementation
+  writeValue(obj: any): void {
+    this.selectedItem = obj
+  }
+  registerOnChange(fn: any): void {
+    this.onChangeCallback = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouchedCallback = fn;
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+
+  onChangeCallback: (_: any) => void = () => { };
+  onTouchedCallback: () => void = () => { };
 
   ngOnInit(): void {
     this.loadData()
@@ -36,17 +62,18 @@ export class CustomerSelectComponent {
 
   onSearch(event: { term: string; items: any[] }): void {
     this.loadData(event.term);
-    this.emitSelectedValue(null);
   }
 
   onClear(): void {
-    this.loadData('');
-    this.selectedItem = null;
+    this.loadData();
+    this.emitSelectedValue(null);
   }
 
   onChange(selected: any): void {
     console.log('[CustomerSelectComponent] Selected Item:', selected);
+    this.selectedItem = selected;
     this.emitSelectedValue(this.selectedItem);
+    this.onChangeCallback(this.selectedItem);
   }
 
   private emitSelectedValue(value: any): void {
