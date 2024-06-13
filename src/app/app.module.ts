@@ -36,6 +36,7 @@ import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CustomerSelectComponent } from './core/components/customer-select/customer-select.component';
+import { ItemSelectComponent } from './core/components/item-select/item-select.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CustomerSelectComponent } from './core/components/customer-select/custo
     OrderDetailComponent,
     OrderEditComponent,
     CustomerSelectComponent,
+    ItemSelectComponent,
   ],
   imports: [
     BrowserModule,
