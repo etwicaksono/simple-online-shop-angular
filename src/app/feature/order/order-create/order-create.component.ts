@@ -18,6 +18,7 @@ export class OrderCreateComponent {
     private router: Router
   ) { }
 
+  selectedValue: any;
   addOrderForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     code: new FormControl('', Validators.required),
@@ -65,4 +66,7 @@ export class OrderCreateComponent {
     });
   }
 
+  onSelectCustomerChange(selected: any): void {
+    this.selectedValue = selected;
+  }
 }

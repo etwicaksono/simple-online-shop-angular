@@ -34,6 +34,8 @@ import { OrderEditComponent } from './feature/order/order-edit/order-edit.compon
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { CustomerSelectComponent } from './core/components/customer-select/customer-select.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     OrderCreateComponent,
     OrderDetailComponent,
     OrderEditComponent,
+    CustomerSelectComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     QuillModule.forRoot({}),
     ReactiveFormsModule,
     FormsModule,
+    NgSelectModule,
   ],
   providers: [
     Title,

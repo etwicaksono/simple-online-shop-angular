@@ -43,13 +43,13 @@ export class CustomerService {
   }
 
   getCustomerForSelect(searchTerm: string = ""): Observable<any> {
-    let params = new HttpParams();
+    let params = new HttpParams()
+      .set('pageNumber', 0)
+      .set('pageSize', 10)
+      .set('sortDirection', "ASC");
     if (searchTerm) {
-      params = params.set('pageNumber', 0);
-      params = params.set('pageSize', 0);
-      params = params.set('sortDirection', "ASC");
       params = params.set('customerName', searchTerm);
     }
-    return this.httpClient.get<any[]>(`${environment.apiUrl}/customer/list}`, { params });
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/customer/list`, { params });
   }
 }

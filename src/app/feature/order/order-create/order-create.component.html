@@ -7,6 +7,8 @@
       <div class="mb-2">
         <label for="name" class="form-label mr-2">Customer <span class="text-danger">*</span></label>
         <!-- <input type="text" class="form-control" id="name" required formControlName="name" autocomplete="off"> -->
+        <app-customer-select (change)="onSelectCustomerChange($event)">
+        </app-customer-select>
         <small class="text-danger"
           *ngIf="addOrderForm.get('name')?.hasError('required') && addOrderForm.get('name')?.touched">Name is
           required.</small>

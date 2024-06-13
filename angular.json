@@ -46,7 +46,8 @@
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.snow.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "bootstrap/dist/css/bootstrap.min.css"
+              "bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": [
               "./node_modules/quill/dist/quill.js",
