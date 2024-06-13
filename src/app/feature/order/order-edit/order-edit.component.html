@@ -1,2 +1,182 @@
 <app-header></app-header>
-<p>order-edit works!</p>
+<div class="container mt-3">
+	<h2>Order Details</h2>
+	<div class="card mb-5">
+		<div class="card-body">
+			<p class="fw-bold mb-0 mt-2">Order Code</p>
+			<p>
+				{{ existingOrder?.orderCode }}
+			</p>
+			<p class="fw-bold mb-0 mt-2">Order Date</p>
+			<p>
+				{{ existingOrder?.orderDate }}
+			</p>
+			<p class="fw-bold mb-0 mt-2">Total Price</p>
+			<p>
+				{{ existingOrder?.totalPrice }}
+			</p>
+			<p class="fw-bold mb-0 mt-2">Customer</p>
+			<div *ngIf="existingOrder?.customer!=null"
+				class="details">
+				<p>
+					<strong>Name:</strong>
+					{{ existingOrder?.customer?.customerName }}
+				</p>
+				<p>
+					<strong>Code:</strong>
+					{{ existingOrder?.customer?.customerCode }}
+				</p>
+				<p>
+					<strong>Phone:</strong>
+					{{ existingOrder?.customer?.customerPhone }}
+				</p>
+				<p>
+					<strong>Address:</strong>
+					{{ existingOrder?.customer?.customerAddress }}
+				</p>
+			</div>
+			<p class="fw-bold mb-0 mt-2">Item</p>
+			<div *ngIf="existingOrder?.item!=null"
+				class="details">
+				<p>
+					<strong>Name:</strong>
+					{{ existingOrder?.item.itemsName }}
+				</p>
+				<p>
+					<strong>Code:</strong>
+					{{ existingOrder?.item.itemsCode }}
+				</p>
+				<p>
+					<strong>Stock:</strong>
+					{{ existingOrder?.item.stock }}
+				</p>
+				<p>
+					<strong>Price:</strong>
+					{{ existingOrder?.item.price }}
+				</p>
+			</div>
+			<p class="fw-bold mb-0 mt-2">Quantity</p>
+			<p>
+				{{ existingOrder?.quantity }}
+			</p>
+		</div>
+	</div>
+	<h2>Order Update Form</h2>
+	<form [formGroup]="editOrderForm"
+		(ngSubmit)="onSubmit()"
+		class="card">
+		<div class="card-body">
+			<div class="mb-2">
+				<label for="customer"
+					class="form-label mr-2">
+					Customer
+					<span class="text-danger">*</span>
+				</label>
+				<app-customer-select formControlName="customer"></app-customer-select>
+				<div *ngIf="selectedCustomer!=null"
+					class="details">
+					<h5>Customer Details</h5>
+					<p>
+						<strong>Name:</strong>
+						{{ selectedCustomer.name }}
+					</p>
+					<p>
+						<strong>Code:</strong>
+						{{ selectedCustomer.code }}
+					</p>
+					<p>
+						<strong>Phone:</strong>
+						{{ selectedCustomer.phone }}
+					</p>
+					<p>
+						<strong>Address:</strong>
+						{{ selectedCustomer.address }}
+					</p>
+				</div>
+				<small *ngIf="editOrderForm.get('customer')?.hasError('required') && editOrderForm.get('customer')?.touched"
+					class="text-danger">
+					Customer
+          is
+          required.
+				</small>
+				<small *ngIf="editOrderForm.get('customer')?.hasError('incorrect')"
+					class="text-danger">
+					{{
+          editOrderForm.get('customer')?.getError('incorrect')?.message }}
+				</small>
+			</div>
+			<div class="mb-2">
+				<label for="item"
+					class="form-label mr-2">
+					Item
+					<span class="text-danger">*</span>
+				</label>
+				<app-item-select formControlName="item"></app-item-select>
+				<div *ngIf="selectedItem!=null"
+					class="details">
+					<h5>Item Details</h5>
+					<p>
+						<strong>Name:</strong>
+						{{ selectedItem.itemsName }}
+					</p>
+					<p>
+						<strong>Code:</strong>
+						{{ selectedItem.itemsCode }}
+					</p>
+					<p>
+						<strong>Stock:</strong>
+						{{ selectedItem.stock }}
+					</p>
+					<p>
+						<strong>Price:</strong>
+						{{ selectedItem.price }}
+					</p>
+				</div>
+				<small *ngIf="editOrderForm.get('item')?.hasError('required') && editOrderForm.get('item')?.touched"
+					class="text-danger">
+					Item
+          is
+          required.
+				</small>
+				<small *ngIf="editOrderForm.get('item')?.hasError('incorrect')"
+					class="text-danger">
+					{{
+          editOrderForm.get('item')?.getError('incorrect')?.message }}
+				</small>
+			</div>
+			<div class="mb-2">
+				<label for="quantity"
+					class="form-label mr-2">
+					Quantity
+					<span class="text-danger">*</span>
+				</label>
+				<input type="number"
+					class="form-control"
+					id="quantity"
+					required
+					formControlName="quantity"
+					autocomplete="off">
+				<small *ngIf="editOrderForm.get('quantity')?.hasError('required') && editOrderForm.get('quantity')?.touched"
+					class="text-danger">
+					Quantity
+          is required.
+				</small>
+				<small *ngIf="!editOrderForm.get('quantity')?.hasError('required') &&editOrderForm.get('quantity')?.hasError('min') && editOrderForm.get('quantity')?.touched"
+					class="text-danger">
+					Minimum
+          quantity
+          is 1.
+				</small>
+				<small *ngIf="editOrderForm.get('quantity')?.hasError('incorrect')"
+					class="text-danger">
+					{{
+          editOrderForm.get('quantity')?.getError('incorrect')?.message }}
+				</small>
+			</div>
+			<button type="submit"
+				class="btn btn-primary my-3 float-end">
+				Submit
+			</button>
+		</div>
+	</form>
+</div>
