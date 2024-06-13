@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormHelper } from '@app/core/helpers/form-helper';
@@ -11,20 +11,28 @@ import { OrderService } from '@app/core/services/order.service';
   templateUrl: './order-create.component.html',
   styleUrl: './order-create.component.css'
 })
-export class OrderCreateComponent {
+export class OrderCreateComponent implements OnInit {
   constructor(
     private orderService: OrderService,
-    private customerService: CustomerService,
     private router: Router
-  ) { }
+  ) {
+    this.addOrderForm = new FormGroup({
+      customer: new FormControl(null, Validators.required),
+      item: new FormControl(null, Validators.required),
+      quantity: new FormControl(0, [Validators.required, Validators.min(1)]),
+    });
+  }
 
   selectedCustomer: any = null;
   selectedItem: any = null;
-  addOrderForm: FormGroup = new FormGroup({
-    customerId: new FormControl(null, Validators.required),
-    itemId: new FormControl(null, Validators.required),
-    quantity: new FormControl(0, [Validators.required, Validators.min(1)]),
-  });
+  addOrderForm: FormGroup
+
+  ngOnInit(): void {
+    this.addOrderForm.get('customer')?.valueChanges.subscribe((customer: any) => {
+      this.selectedCustomer = customer;
+    })
+  }
+
 
   onSubmit() {
     if (this.addOrderForm.invalid) {

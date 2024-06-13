@@ -5,7 +5,6 @@
 
 
 
-
 <div class="container mt-3">
 	<h2>Order Create Form</h2>
 	<form [formGroup]="addOrderForm"
@@ -13,13 +12,12 @@
 		class="card">
 		<div class="card-body">
 			<div class="mb-2">
-				<label for="customerId"
+				<label for="customer"
 					class="form-label mr-2">
 					Customer
 					<span class="text-danger">*</span>
 				</label>
-				<app-customer-select [(ngModel)]="selectedCustomer"
-					formControlName="customerId"></app-customer-select>
+				<app-customer-select formControlName="customer"></app-customer-select>
 				<div *ngIf="selectedCustomer!=null"
 					class="details">
 					<h5>Customer Details</h5>
@@ -40,20 +38,20 @@
 						{{ selectedCustomer.address }}
 					</p>
 				</div>
-				<small *ngIf="addOrderForm.get('customerId')?.hasError('required') && addOrderForm.get('customerId')?.touched"
+				<small *ngIf="addOrderForm.get('customer')?.hasError('required') && addOrderForm.get('customer')?.touched"
 					class="text-danger">
 					Customer
           is
           required.
 				</small>
-				<small *ngIf="addOrderForm.get('customerId')?.hasError('incorrect')"
+				<small *ngIf="addOrderForm.get('customer')?.hasError('incorrect')"
 					class="text-danger">
 					{{
-          addOrderForm.get('customerId')?.getError('incorrect')?.message }}
+          addOrderForm.get('customer')?.getError('incorrect')?.message }}
 				</small>
 			</div>
 			<div class="mb-2">
-				<label for="itemId"
+				<label for="item"
 					class="form-label mr-2">
 					Item
 					<span class="text-danger">*</span>
@@ -79,16 +77,16 @@
 						{{ selectedItem.price }}
 					</p>
 				</div>
-				<small *ngIf="addOrderForm.get('itemId')?.hasError('required') && addOrderForm.get('itemId')?.touched"
+				<small *ngIf="addOrderForm.get('item')?.hasError('required') && addOrderForm.get('item')?.touched"
 					class="text-danger">
 					Item
           is
           required.
 				</small>
-				<small *ngIf="addOrderForm.get('itemId')?.hasError('incorrect')"
+				<small *ngIf="addOrderForm.get('item')?.hasError('incorrect')"
 					class="text-danger">
 					{{
-          addOrderForm.get('itemId')?.getError('incorrect')?.message }}
+          addOrderForm.get('item')?.getError('incorrect')?.message }}
 				</small>
 			</div>
 			<div class="mb-2">
