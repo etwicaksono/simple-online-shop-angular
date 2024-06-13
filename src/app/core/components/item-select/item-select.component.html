@@ -1,10 +1,24 @@
-<ng-select [items]="data" bindLabel="name" (clear)="onClear()" (change)="onChange($event)" placeholder="Select an Item"
-  (search)="onSearch($event)" [loading]="loading">
-  <ng-template ng-option-tmp let-item="item" let-index="index">
-    <div>
-      <span class="me-5">{{ item.itemsName }}</span> <span class="text-black-50">[Stock: {{ item.stock }}] [Price: {{
+<ng-select [items]="data"
+	[ngModel]="selectedItem"
+	[disabled]="isDisabled"
+	[loading]="loading"
+	(clear)="onClear()"
+	(change)="onChange($event)"
+	(search)="onSearch($event)"
+	bindLabel="name"
+	placeholder="Select an Item">
+	<ng-template ng-option-tmp
+		let-item="item"
+		let-index="index">
+		<div>
+			<span class="me-5">
+				{{ item.itemsName }}
+			</span>
+			<span class="text-black-50">
+				[Stock: {{ item.stock }}] [Price: {{
         item.price
-        }}]</span>
-    </div>
-  </ng-template>
+        }}]
+			</span>
+		</div>
+	</ng-template>
 </ng-select>

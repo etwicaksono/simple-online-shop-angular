@@ -5,6 +5,7 @@
 
 
 
+
 <div class="container mt-3">
 	<h2>Order Create Form</h2>
 	<form [formGroup]="addOrderForm"
@@ -56,7 +57,7 @@
 					Item
 					<span class="text-danger">*</span>
 				</label>
-				<app-item-select (change)="onSelectItemChange($event)"></app-item-select>
+				<app-item-select formControlName="item"></app-item-select>
 				<div *ngIf="selectedItem!=null"
 					class="details">
 					<h5>Item Details</h5>

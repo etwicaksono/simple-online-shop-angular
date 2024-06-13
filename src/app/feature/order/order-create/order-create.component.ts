@@ -31,6 +31,9 @@ export class OrderCreateComponent implements OnInit {
     this.addOrderForm.get('customer')?.valueChanges.subscribe((customer: any) => {
       this.selectedCustomer = customer;
     })
+    this.addOrderForm.get('item')?.valueChanges.subscribe((item: any) => {
+      this.selectedItem = item;
+    })
   }
 
 
@@ -42,13 +45,12 @@ export class OrderCreateComponent implements OnInit {
     }
 
     // Create the URL-encoded body
-    let body = new HttpParams();
     let inputValue = this.addOrderForm.value
-    for (let key in inputValue) {
-      if (inputValue.hasOwnProperty(key)) {
-        body = body.set(key, inputValue[key]);
-      }
-    }
+    console.debug("inputValue: ", inputValue)
+    let body = new HttpParams()
+      .set("customerID", inputValue.customer.customerID)
+      .set("itemsID", inputValue.item.itemsID)
+      .set("quantity", inputValue.quantity);
 
     this.orderService.createOrder(body).subscribe({
       next: (res: any) => {
@@ -71,10 +73,6 @@ export class OrderCreateComponent implements OnInit {
         }
       }
     });
-  }
-
-  onSelectItemChange(selected: any): void {
-    this.selectedItem = selected;
   }
 
 }
