@@ -1,2 +1,64 @@
 <app-header></app-header>
-<p>order-detail works!</p>
+<div class="container mt-3">
+	<h2>Order Details</h2>
+	<div class="card mb-5">
+		<div class="card-body">
+			<p class="fw-bold mb-0 mt-2">Order Code</p>
+			<p>
+				{{ existingOrder?.orderCode }}
+			</p>
+			<p class="fw-bold mb-0 mt-2">Order Date</p>
+			<p>
+				{{ existingOrder?.orderDate }}
+			</p>
+			<p class="fw-bold mb-0 mt-2">Total Price</p>
+			<p>
+				{{ existingOrder?.totalPrice }}
+			</p>
+			<p class="fw-bold mb-0 mt-2">Customer</p>
+			<div *ngIf="existingOrder?.customer!=null"
+				class="details">
+				<p>
+					<strong>Name:</strong>
+					{{ existingOrder?.customer?.customerName }}
+				</p>
+				<p>
+					<strong>Code:</strong>
+					{{ existingOrder?.customer?.customerCode }}
+				</p>
+				<p>
+					<strong>Phone:</strong>
+					{{ existingOrder?.customer?.customerPhone }}
+				</p>
+				<p>
+					<strong>Address:</strong>
+					{{ existingOrder?.customer?.customerAddress }}
+				</p>
+			</div>
+			<p class="fw-bold mb-0 mt-2">Item</p>
+			<div *ngIf="existingOrder?.item!=null"
+				class="details">
+				<p>
+					<strong>Name:</strong>
+					{{ existingOrder?.item.itemsName }}
+				</p>
+				<p>
+					<strong>Code:</strong>
+					{{ existingOrder?.item.itemsCode }}
+				</p>
+				<p>
+					<strong>Stock:</strong>
+					{{ existingOrder?.item.stock }}
+				</p>
+				<p>
+					<strong>Price:</strong>
+					{{ existingOrder?.item.price }}
+				</p>
+			</div>
+			<p class="fw-bold mb-0 mt-2">Quantity</p>
+			<p>
+				{{ existingOrder?.quantity }}
+			</p>
+		</div>
+	</div>
+</div>
