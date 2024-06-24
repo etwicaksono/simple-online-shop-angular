@@ -1,7 +1,7 @@
 {
   "sonarlint.connectedMode.project": {
     "connectionId": "http-localhost-9099",
-    "projectKey": "BTPN-Angular-Online-Shop"
+    "projectKey": "Simple-Angular-Online-Shop"
   },
   "editor.formatOnSave": true,
   "notebook.defaultFormatter": null,

@@ -1,41 +1,76 @@
 <mat-toolbar class="header">
-  <div class="logo" routerLink="">
-    <img src="assets/online-shop-logo.png" alt="Logo">
-    <h1>BTPN Online Shop</h1>
-  </div>
-  <div class="nav">
-    <button mat-button routerLink="/customer/list" [class.router-link-active]="isCustomerActive">Customer</button>
-    <button mat-button routerLink="/item/list" [class.router-link-active]="isItemActive">Item</button>
-    <button mat-button routerLink="/order/list" [class.router-link-active]="isOrderActive">Order</button>
-  </div>
-  <div class="menu">
-    <button mat-button (click)="sidebarVisible = true" [ngStyle]="{color: 'white'}">
-      <mat-icon>menu</mat-icon>
-    </button>
+	<div class="logo"
+		routerLink>
+		<img src="assets/online-shop-logo.png"
+			alt="Logo">
+		<h1>Simple Online Shop</h1>
+	</div>
+	<div class="nav">
+		<button [class.router-link-active]="isCustomerActive"
+			mat-button
+			routerLink="/customer/list">
+			Customer
+		</button>
+		<button [class.router-link-active]="isItemActive"
+			mat-button
+			routerLink="/item/list">
+			Item
+		</button>
+		<button [class.router-link-active]="isOrderActive"
+			mat-button
+			routerLink="/order/list">
+			Order
+		</button>
+	</div>
+	<div class="menu">
+		<button [ngStyle]="{color: 'white'}"
+			(click)="sidebarVisible = true"
+			mat-button>
+			<mat-icon>menu</mat-icon>
+		</button>
 
-    <p-sidebar [(visible)]="sidebarVisible" position="right" [showCloseIcon]="false" [blockScroll]="true"
-      [style]="{ backgroundColor: '#f49881' }">
-      <div class="mNav">
 
-        <div class="closeButton">
-          <button mat-icon-button (click)="sidebarVisible = false">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
+		<p-sidebar [(visible)]="sidebarVisible"
+			[showCloseIcon]="false"
+			[blockScroll]="true"
+			[style]="{ backgroundColor: '#f49881' }"
+			position="right">
+			<div class="mNav">
 
-        <div class="mNavButton">
-          <mat-icon>group</mat-icon>
-          <button mat-button routerLink="/customer/list" [class.router-link-active]="isCustomerActive">Customer</button>
-        </div>
-        <div class="mNavButton">
-          <mat-icon>category</mat-icon>
-          <button mat-button routerLink="/item/list" [class.router-link-active]="isItemActive">Item</button>
-        </div>
-        <div class="mNavButton">
-          <mat-icon>shopping_cart</mat-icon>
-          <button mat-button routerLink="/order/list" [class.router-link-active]="isOrderActive">Order</button>
-        </div>
-      </div>
-    </p-sidebar>
-  </div>
+
+				<div class="closeButton">
+					<button (click)="sidebarVisible = false"
+						mat-icon-button>
+						<mat-icon>close</mat-icon>
+					</button>
+				</div>
+
+
+				<div class="mNavButton">
+					<mat-icon>group</mat-icon>
+					<button [class.router-link-active]="isCustomerActive"
+						mat-button
+						routerLink="/customer/list">
+						Customer
+					</button>
+				</div>
+				<div class="mNavButton">
+					<mat-icon>category</mat-icon>
+					<button [class.router-link-active]="isItemActive"
+						mat-button
+						routerLink="/item/list">
+						Item
+					</button>
+				</div>
+				<div class="mNavButton">
+					<mat-icon>shopping_cart</mat-icon>
+					<button [class.router-link-active]="isOrderActive"
+						mat-button
+						routerLink="/order/list">
+						Order
+					</button>
+				</div>
+			</div>
+		</p-sidebar>
+	</div>
 </mat-toolbar>
